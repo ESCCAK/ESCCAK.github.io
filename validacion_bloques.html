@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+	<meta name="twitter:image" content="https://esccak.github.io/assets/img/chain.jpg" />
+        <title>Blockchain - Validacion de Bloques</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Escuela de CriptoAnarkismo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!--<div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                    </ul>
+		    </div>-->
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/chain.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>VALIDACION DE BLOQUES</h1>
+                            <h2 class="subheading">A continuación veremos la manera en que es usada la función SHA-256 para la validación de bloques.</h2>
+                       <span class="meta">
+                                Posted by
+                                <a href="https://twitter.com/esccak">esccak</a>
+                              on Junio 24, 2022  
+                            </span>
+			</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+			    <p>SHA-256 es el componentes criptográfico que se usa para la validación de bloques. SHA256 es una función hash.
+			    </p>
+			    <p>
+Una función hash tiene como propósito generar un output de longitud fija para un input de cualquier tamaño.
+</p>
+<p>
+El hash generado es una especie de “huella” del contenido ingresado como input.
+</p>
+<p>
+Se puede ingresar por decir algo un video y el hash generado para este video siempre sera el mismo, pero si se cambia un solo bit de este video el hash generado será completamente distinto.
+</p>
+<p>
+En el caso de SHA-256 el output generado es una cadena de 256 bits.
+</p>
+<p>
+La manera en que Bitcoin asegura los bloques es generando una cadena hash del bloque actual, y el bloque actual conteniendo el hash del bloque anterior
+</p>
+<p>
+Se tendría algo así: Bloque_0{prev_hash:000,hash:xxx, content:”hola”}->Bloque_1{prev_hash:xxx,hash:xx1, content:”mundo”}->Bloque_2{prev_hash:xx1,hash:xx2,content:”bitcoin”]
+<p>
+<p>
+El primer bloque, al ser el bloque genesis no tiene un hash de un bloque anterior, por tal razón el prev-hash es 000, y tiene un hash de xxx. El siguiente bloque tiene un prev_hash de xxx y un hash de xx1 y el Bloque_2 un prev_hash de xx1 y un hash de xx2
+</p>
+<p>
+Supongamos que decidamos alterar el bloque_0 con el contenido “bye”
+</p>
+<p>
+Al aplicarle la función hash a este nuevo bloque el hash de este bloque cambiaría y como el bloque_1 contiene el hash del bloque_0 el hash del bloque_1 también cambiara y así se alterarían todos los bloques sucesivos hacia adelante en la cadena
+</p>
+<p>
+Como Bitcoin es una red distribuida el estado de la cadena la comparten varios nodos. Cuando un nodo se “sincroniza”, lo hace conectandose a diferentes nodos y tomando diferentes bloques de diferentes nodos.
+</p>
+<p>
+Para asegurarse de la validez de la cadena se debe aplicar la función hash a cada bloque sincronizado.
+</p>
+<p>
+Si un solo bloque sincronizado ha sido alterado se podrá saber de inmediato que la cadena esta alterada ya que la generación de la cadena hash de los bloques posteriores no corresponderá si un solo bloque anterior ha sido alterado
+</p>
+<p>
+Puedes revisar estos conceptos en código en el archivo test:
+
+</p>
+			   
+                            <a href="https://github.com/ESCCAK/bitlearn/blob/main/src/test/java/esccak/bitlearn/services/ValidateBlockServiceTest.java">ValidateBlockServiceTest.java</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/esccak">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/ESCCAK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
