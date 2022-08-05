@@ -7,12 +7,12 @@
         <meta name="author" content="" />
 	<meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@esccak" />
-        <meta name="twitter:title" content="PoW Proof of Work" />
-        <meta name="twitter:description" content="Cómo funciona el Proof of Work?" />
-        <meta name="twitter:image" content="https://esccak.github.io/assets/img/PoW.jpg" />
+        <meta name="twitter:title" content="Digital Signatures - Firmas Digitales" />
+        <meta name="twitter:description" content="Una firma digital es un mecanismo que usa la criptografía por medio de la cual se puede demostrar que se posee la llave privada con la que ha sido firmado un mensaje." />
+        <meta name="twitter:image" content="https://esccak.github.io/assets/img/signature.jpg" />
 
 
-        <title>Blockchain - Proof of Work (PoW)</title>
+        <title>Blockchain: Firmas Digitales (Digital Signatures)</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -26,7 +26,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">Escuela de CriptoAnarkismo</a>
+                <a class="navbar-brand" href="index.html">ESCCAK</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -42,17 +42,17 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/PoW.jpg')">
+        <header class="masthead" style="background-image: url('assets/img/signature.jpg')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>Proof of Work (PoW)</h1>
-                            <h2 class="subheading">Con PoW los nodos 'mineros' compiten para agregar nuevos bloques a la cadena resolviendo un acertijo criptográfico.</h2>
+                            <h1>Firmas Digitales (Digital Signatures)</h1>
+                            <h2 class="subheading">Una firma digital es un mecanismo que usa la criptografía por medio de la cual se puede demostrar que se posee la llave privada con la que ha sido firmado un mensaje.</h2>
                        <span class="meta">
                                 Posted by
                                 <a href="https://twitter.com/esccak">esccak</a>
-                              on Junio 30, 2022  
+                              on August 5, 2022  
                             </span>
 			</div>
                     </div>
@@ -65,45 +65,89 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
 			    <p>
-			    PoW -Proof of Work- es uno de los mecanismo por medio del cual Bitcoin puede operar de manera descentralizada sin la necesidad de un agente central que valide las transacciones.
+			    Por medio de las firmas digitales es posible transferir fondos en la red de Bitcoin.
 			    </p>
 			    <p>
-			    Con PoW los nodos 'mineros' compiten para agregar nuevos bloques a la cadena resolviendo un "acertijo criptográfico".
-
+			    Una firma digital es un mecanismo que usa la criptografía por medio de la cual se puede demostrar que se posee la llave privada con la que ha sido firmado un mensaje.
 			    </p>
 
 <p>
-Este "acertijo" consiste en generar un output de la función SHA-256 que contenga al inicio del output cierto número de 0's, teniendo como input el bloque que se quiere agregar.
+Las firmas digitales funcionan gracias a la criptografía de llave pública o criptografía asimétrica.
 </p>
 <p>
-Para agregar un nuevo bloque a la cadena se debe aplicar la función SHA-256 al bloque que queremos agregar.
+Por medio de la criptografía asimétrica es posible generar una llave privada y una llave pública. La llave privada servirá para firmar mensajes, mientras que la llave publica se usará para verificar la validez de la firma.
 </p>
 <p>
-Como ya vimos, un mínimo cambio en el input de la funcion hash va a generar un output totalmente diferente. Así, se debe tener una variable que haga parte de nuestro bloque y que podamos modificar de manera aleatoria.
+Si alguien desea enviar un mensaje a un tercero y este tercero necesita verificar que efectivamente quien envía el mensaje posee la llave privada con la que se firmó este mensaje, lo podrá verificar haciendo uso de la llave pública de la persona que le envía el mensaje.
 </p>
 <p>
-Al modificar esta variable y aplicar la función SHA-256 a nuestro bloque, está nos irá generando outputs diferentes.
+Estos mensajes en bitcoin serían las transacciones y el tercero serían los mineros quienes se encargan de verificar la validez de la transacción para poder agregarla a un nuevo bloque.
 </p>
-<p>
 
 <p>
-Así, se necesitará de un algoritmo que cambie esta variable y le aplique la función hash cuantas veces sea necesario a nuestro bloque hasta que el output dé como resultado una cadena output que contenga los ceros que indique el nivel de dificultad en ese momento.
+Veamos un pequeño ejemplo para ilustrar cómo funciona.
 <p>
-Este nivel de dificultad dependerá de cuantos 0's se necesitaran en el output al aplicarle la funcion hash a nuestro bloque. Entre más 0's se necesiten el nivel de dificultad sera mayor.
+<code>
+BIT_PLAY_TOKEN {
+        owner:"ALICE_PUB_KEY"
+    }
+    <br>---after transaction---<br>
+    BIT_PLAY_TOKEN{
+        owner:"BOB_PUB_KEY"
+    }
+</code>
+<p>
+</p>
+Alice posee el asset "BIT_PLAY_TOKEN" que desea transferirlo a Bob.
+<p>
+Alice previamente ha generado una llave asimétrica. Ella posee la llave privada y la pública la conocen los terceros.
+</p>
+
+<p>
+Para poder transferir el asset a Bob Alice necesitará demostrar que posee la llave privada asociada a ALICE_PUB_KEY
 </p>
 <p>
-El nivel de dificultad se va actualizando para que el tiempo promedio que tome agregar un nuevo bloque a la cadena sea de 10 minutos.
+Así podrá asignar el asset BIT_PLAY_TOKEN a Bob firmando la transacción asignando la llave pública del nuevo dueño al asset BIT_PLAYT_TOKEN
 </p>
 <p>
-Una vez uno de los nodo 'mineros' logra resolver el "acertijo" podrá agregar el nuevo bloque a la cadena y recibirá como recompensa bitcoins.
+<code>
+SIGN_ALICE = (transaction {
+        asset: BIT_PLAYT_TOKEN
+        prev_owner:ALICE_PUB_KEY
+        new_owner:BOB_PUB_KEY
+     }).signed(ALICE_PRIV_KEY)
+</code>
 </p>
+<p>
+El minero tendrá que verificar que esta transacción es válida y para ello deberá asegurarse de que la firma corresponde a Alice.
+</p>
+<p>
+Para ello usará la transacción firmada por Alice SIGN_ALICE, y la verificará usando la llave pública de Alice
+</p>
+<p>
+<code>
+	SIGN_IS_VALID = isValid(
+       transaction {
+            asset: BIT_PLAYT_TOKEN
+            prev_owner:ALICE_PUB_KEY
+            new_owner:BOB_PUB_KEY
+         }, ALICE_PUB_KEY, SIGN_ALICE)
+</code>
+</p>
+
+<p>
+Una vez el minero haya verificado la validez de la firma del mensaje la agregará al nuevo bloque que será minado.
+</p>
+
 <p>
 Puedes revisar estos conceptos en código en el archivo test:
 
 </p>
-<p>
-                            <a style="color:blue;" href="https://github.com/ESCCAK/bitlearn/blob/main/src/test/java/esccak/bitlearn/services/ValidateBlockServiceTest.java">PoWTest.java</a>
-                        </p>
+<p>		   
+
+	<a style=color:blue; href="https://github.com/ESCCAK/bitlearn/blob/main/src/test/java/esccak/bitlearn/services/DigitalSignaturesTest.java">DigitalSignaturesTest.java</a>
+	    
+</p>
                     </div>
                 </div>
             </div>
